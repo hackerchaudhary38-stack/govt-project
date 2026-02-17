@@ -8,10 +8,9 @@ function ForgotPassword() {
   const [securityAnswer, setSecurityAnswer] = useState("");
   const [retrievedPassword, setRetrievedPassword] = useState(""); // store the password
 
-  // ✅ Correct baseURL matching deployed WAR
+  // ✅ Updated baseURL for deployed Render backend
   const API = axios.create({
-    baseURL: "http://localhost:8080/govt-complain-backend-project",
-    withCredentials: true,
+    baseURL: "https://complaint-portal-xfaa.onrender.com/api",
     headers: { "Content-Type": "application/json" },
   });
 
@@ -22,7 +21,7 @@ function ForgotPassword() {
     }
 
     try {
-      const res = await API.post("/api/forgot-password", {
+      const res = await API.post("/forgot-password", {
         userName,
         securityAnswer,
       });

@@ -9,10 +9,9 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [securityAnswer, setSecurityAnswer] = useState("");
 
-  // ✅ Correct baseURL matching deployed WAR
+  // ✅ Updated baseURL for deployed Render backend
   const API = axios.create({
-    baseURL: "http://localhost:8080/govt-complain-backend-project",
-    withCredentials: true,
+    baseURL: "https://complaint-portal-xfaa.onrender.com/api",
     headers: { "Content-Type": "application/json" },
   });
 
@@ -23,7 +22,7 @@ function Signup() {
     }
 
     try {
-      const res = await API.post("/api/signup", {
+      const res = await API.post("/signup", {
         userName,
         name,
         password,
@@ -33,7 +32,7 @@ function Signup() {
       if (res.data.status === "success") {
         alert("Signup successful! You can now login.");
         console.log("Signup success, navigating to Login page");
-        navigate("/", { replace: true }); // ← Fixed to go to Login page correctly
+        navigate("/", { replace: true }); // ← go to Login page
       } else {
         alert(res.data.message || "Signup failed");
       }

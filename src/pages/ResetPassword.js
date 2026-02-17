@@ -8,9 +8,9 @@ function ResetPassword() {
   const [securityAnswer, setSecurityAnswer] = useState("");
   const [newPassword, setNewPassword] = useState("");
 
+  // ✅ Updated baseURL for deployed Render backend
   const API = axios.create({
-    baseURL: "http://localhost:8080/govt-complain-backend-project",
-    withCredentials: true,
+    baseURL: "https://complaint-portal-xfaa.onrender.com/api",
     headers: { "Content-Type": "application/json" },
   });
 
@@ -21,10 +21,10 @@ function ResetPassword() {
     }
 
     try {
-      const res = await API.post("/api/reset-password", {
+      const res = await API.post("/reset-password", {
         userName: userName.trim(),
         securityAnswer: securityAnswer.trim(),
-        password: newPassword.trim(), // 🔑 must match servlet UserDTO
+        password: newPassword.trim(),
       });
 
       if (res.data.status === "success") {
