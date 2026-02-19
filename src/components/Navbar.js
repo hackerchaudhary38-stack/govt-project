@@ -1,14 +1,12 @@
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import API from "../api/api"; // ✅ use your api.js instance
 
 function Navbar() {
   const navigate = useNavigate();
 
   const logout = async () => {
     try {
-      await axios.post(
-        "https://complaint-portal-xfaa.onrender.com/api/logout"
-      );
+      await API.post("/logout"); // ✅ local backend URL handled by api.js
       navigate("/");
     } catch (err) {
       console.error(err);

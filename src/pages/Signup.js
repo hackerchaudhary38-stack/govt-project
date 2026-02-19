@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios"; // use axios directly
+import API from "../api/api"; // ✅ use centralized API
 import { useNavigate } from "react-router-dom";
 
 function Signup() {
@@ -8,12 +8,6 @@ function Signup() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [securityAnswer, setSecurityAnswer] = useState("");
-
-  // ✅ Updated baseURL for deployed Render backend
-  const API = axios.create({
-    baseURL: "https://complaint-portal-xfaa.onrender.com/api",
-    headers: { "Content-Type": "application/json" },
-  });
 
   const signup = async () => {
     if (!userName || !name || !password || !securityAnswer) {

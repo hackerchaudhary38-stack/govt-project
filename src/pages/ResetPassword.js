@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import API from "../api/api"; // ✅ use centralized API
 import { useNavigate } from "react-router-dom";
 
 function ResetPassword() {
@@ -7,12 +7,6 @@ function ResetPassword() {
   const [userName, setUserName] = useState("");
   const [securityAnswer, setSecurityAnswer] = useState("");
   const [newPassword, setNewPassword] = useState("");
-
-  // ✅ Updated baseURL for deployed Render backend
-  const API = axios.create({
-    baseURL: "https://complaint-portal-xfaa.onrender.com/api",
-    headers: { "Content-Type": "application/json" },
-  });
 
   const resetPassword = async () => {
     if (!userName.trim() || !securityAnswer.trim() || !newPassword.trim()) {
